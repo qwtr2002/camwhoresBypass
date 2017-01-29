@@ -9,4 +9,16 @@
 
 .example{
 	font-size: xx-small;
+	color:white !important;
+}
+
+body{
+	background-color: #272b30 !important;
+	color:white !important;
+}
+
+.signature{
+	background-color: #272b30 !important;
+	color:white !important;
+	border:none;
 }
