@@ -57,15 +57,15 @@ Camwhores.tv private video bypass
 //check if form was submitted
 if(isset($_POST['sumbitVideoURL'])){
 
-	$input = $_POST['videoURL']; // just in case someone tries to inject something
+	$input = $_POST['videoURL']; 
 	$random = urldecode($_POST['random']);
 	$videoID = getVideoID($input); 
 	$folderID = getFolderID($input,$videoID);
 
 	/*
-
 	cv, cv2 and cv3 are 3 security tokens that are generated and use to create the link to the video source
-
+	Theses hashes will most likely last for about 10min
+	cv3 seems useless since i can get embed video without using it
 	*/
 	$time = get_string_between($random,'time=','&'); // Returned by php time() function
 	$user = get_string_between($random,'//','.');
