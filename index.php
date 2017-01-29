@@ -31,7 +31,7 @@ Also works with private vids
 <body>
 <div class="container">
 
-<h1>
+<h1 id="mainTitle">
 Camwhores.tv private video bypass
 </h1>
 
@@ -47,7 +47,7 @@ Camwhores.tv private video bypass
 <input type="text" name="random" class="form-control" placeholder="Insert random public video link here" required /><br />
 
 
-<input type="submit" name="sumbitVideoURL" value="Sumbit"/>
+<input type="submit" name="sumbitVideoURL" value="Sumbit" class="btn btn-default" style="color:black;"/>
 </div>
 </form>
 
@@ -132,8 +132,32 @@ Then choose any public video (apart from openload player), play the video and fo
     </div>
   </div>
 
-</div>
-</div>
+</div> <!-- End of row -->
+
+<h3>Alternative way to get ddl link without using plugin</h3>
+<p>
+- Find a random public video, click play
+- Browse the code until you find the video tag, it should look like this
+<img src="imgs/alternative.jpg" alt="alternative" style="width:80%"><br />
+- Open src URL, it should lead you to the ddl link
+</p>
+
+<pre class="signature">
+
+  __  __           _        _             _____                        
+ |  \/  |         | |      | |           |  __ \                       
+ | \  / | __ _  __| | ___  | |__  _   _  | |  | | __ _ _   _ _ __ ___  
+ | |\/| |/ _` |/ _` |/ _ \ | '_ \| | | | | |  | |/ _` | | | | '_ ` _ \ 
+ | |  | | (_| | (_| |  __/ | |_) | |_| | | |__| | (_| | |_| | | | | | |
+ |_|  |_|\__,_|\__,_|\___| |_.__/ \__, | |_____/ \__,_|\__, |_| |_| |_|
+                                   __/ |                __/ |          
+                                  |___/                |___/ 
+
+Nothing is private on the internet
+</pre>
+
+
+</div> <!-- End of container -->
 
 
 </body>
