@@ -3,8 +3,7 @@
 ( . )( . )
 camwhores.tv private videos bypass
 
-Live demo available @
-https://camwhoresbypass.000webhostapp.com/
+Live demo down atm
 
 For educational purposes only
 
