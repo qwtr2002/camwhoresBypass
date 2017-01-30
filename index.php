@@ -69,7 +69,16 @@ if(isset($_POST['sumbitVideoURL'])){
 	*/
 	$time = get_string_between($random,'time=','&'); // Returned by php time() function
 	$user = get_string_between($random,'//','.');
-	//$user = 'user9';
+	
+	/* 
+
+	In somes cases, ddl link will start with "videoX" instead of "userX", which causes the fetch to fail. Replacing it will send the video to the right place
+	
+	*/
+	if(strpos($user, 'video') !== false){
+		$user = str_replace("video", "user", $user);
+	}
+	
 	$cv = get_string_between($random,'cv=','&');
 	$cv2 = get_string_between($random,'cv2=','&');
 	$cv3 = get_string_between($random . '/','cv3=','/');
