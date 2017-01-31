@@ -63,9 +63,9 @@ if(isset($_POST['sumbitVideoURL'])){
 	$folderID = getFolderID($input,$videoID);
 
 	/*
-	cv, cv2 and cv3 are 3 security tokens that are generated and use to create the link to the video source
-	Theses hashes will most likely last for about 10min
-	cv3 seems useless since i can get embed video without using it
+	cv, cv2 and cv3 are 3 security tokens that are generated and used to create the link to the video source
+	These hashes will most likely last for about 10min
+	cv3 seems useless since i can embed video without using it
 	*/
 	$time = get_string_between($random,'time=','&'); // Returned by php time() function
 	$user = get_string_between($random,'//','.');
