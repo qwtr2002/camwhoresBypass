@@ -110,7 +110,6 @@ if(isset($_POST['sumbitVideoURL'])){
 		$fetch = checkFileValidity(get_string_between('$$' . $link,'$$','&cv3'));
 	}
 
-echo $link;
 
 if($fetch){
 
