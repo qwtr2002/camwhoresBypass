@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+error_reporting(1);
 require 'functions.php';
 ?>
 
@@ -99,11 +99,11 @@ if(isset($_POST['sumbitVideoURL'])){
 	}else{
 
 		if(strpos($user, 'user') !== false){
-			$user = str_replace("user","s",$user);
+			$user = "s6";
 		}
 		else
 		{
-			$user = str_replace("s","user",$user);
+			$user = "user9";
 		}
 		
 		$link = 'http://' . $user . '.camwhores.tv/remote_control.php?time='. $time . '&cv=' . $cv . '&lr='. $lr .'&cv2=' . $cv2 . '&file=/'. $folderID .'/' . $videoID .'/' . $videoID . '.mp4&cv3=' . $cv3;
