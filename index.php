@@ -29,6 +29,7 @@ Also works with private vids
 </head>
 
 <body>
+
 <div class="container">
 
 <h1 id="mainTitle">
@@ -63,13 +64,13 @@ if(isset($_POST['sumbitVideoURL'])){
 	$folderID = getFolderID($input,$videoID);
 
 	/*
-	cv, cv2 and cv3 are 3 security tokens that are generated and used to create the link to the video source
-	These hashes will most likely last for about 10min
-	cv3 seems useless since i can embed video without using it
+	cv, cv2 and cv3 are 3 security tokens that are generated and use to create the link to the video source
+	Theses hashes will most likely last for about 10min
+	cv3 seems useless since i can get embed video without using it
 	*/
 	$time = get_string_between($random,'time=','&'); // Returned by php time() function
 	$user = get_string_between($random,'//','.');
-	
+
 	/* 
 
 	In somes cases, ddl link will start with "videoX" instead of "userX", which causes the fetch to fail. Replacing it will send the video to the right place
@@ -78,7 +79,12 @@ if(isset($_POST['sumbitVideoURL'])){
 	if(strpos($user, 'video') !== false){
 		$user = str_replace("video", "user", $user);
 	}
+	/*
 	
+	Another case where ddl link starts with "sX" instead of "userX"
+
+	*/
+
 	$cv = get_string_between($random,'cv=','&');
 	$cv2 = get_string_between($random,'cv2=','&');
 	$cv3 = get_string_between($random . '/','cv3=','/');
@@ -86,21 +92,41 @@ if(isset($_POST['sumbitVideoURL'])){
 
 	// The download link generated
 	$link = 'http://' . $user . '.camwhores.tv/remote_control.php?time='. $time . '&cv=' . $cv . '&lr='. $lr .'&cv2=' . $cv2 . '&file=/'. $folderID .'/' . $videoID .'/' . $videoID . '.mp4&cv3=' . $cv3;
+	$fetch = false;
 	// Showing download link if we have correct parameters
-	if($videoID != '' && $folderID != '' && checkFileValidity(get_string_between('$$' . $link,'$$','&cv3'))){
+	if(checkFileValidity(get_string_between('$$' . $link,'$$','&cv3'))){
+		$fetch = true;
+	}else{
+
+		if(strpos($user, 'user') !== false){
+			$user = str_replace("user","s",$user);
+		}
+		else
+		{
+			$user = str_replace("s","user",$user);
+		}
+		
+		$link = 'http://' . $user . '.camwhores.tv/remote_control.php?time='. $time . '&cv=' . $cv . '&lr='. $lr .'&cv2=' . $cv2 . '&file=/'. $folderID .'/' . $videoID .'/' . $videoID . '.mp4&cv3=' . $cv3;
+		$fetch = checkFileValidity(get_string_between('$$' . $link,'$$','&cv3'));
+	}
+
+echo $link;
+
+if($fetch){
 
 echo '<video id="player" width="640" height="480" controls>
     <source src="'. get_string_between('$$' . $link,'$$','&cv3') .'" type="video/mp4">
     Your browser does not support the video tag.
 </video>';
 echo '<br /><a href="'. $link . '" download="' . $videoID . '" class="btn btn-success">Download video</a>';
+}
+		else
+			echo '<div class="alert alert-danger">Error while fetching video. Make sure you post a correct URL, or try to change ddl link</div>';
 
-	}
+
 		
-	else
-		echo '<div class="alert alert-danger">Error while fetching video. Make sure you post a correct URL, or try to change ddl link</div>';
 
-} 
+}
 
 ?>
 
